@@ -1,0 +1,101 @@
+
+1. Ver si esta instalado docker-compose:
+docker-compose -version
+Si no esta instalado docker-compose instalarlo. 
+2. Crear un directorio en el Host, tener en cuenta que el mismo deberia estar
+en un directorio compartido, usando algun virtualizador como VBox o con las tools de Docker Desktop:
+Por ejemplo nombrarlo composetest, dentro del directorio home del usuario  
+3. Dentro del directorio creado crear un programa python, llamado app.py que contenga lo siguiente (conservar identacion):
+
+from flask import Flask
+from redis import Redis
+
+app = Flask(__name__)
+redis = Redis(host='redis', port=6379)
+
+@app.route('/')
+def hello():
+    count = redis.incr('hits')
+    return 'Hello World! I have been seen {} times.\n'.format(count)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", debug=True)
+
+4. Crear otro archivo requirements.txt que contenga:
+
+flask
+redis
+
+5. Crear un archivo llamado Dockerfile (sin extension) que contenga:
+
+FROM python:3.4-alpine
+ADD . /code
+WORKDIR /code
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]
+
+6. Crear un archivo docker-compose.yml que contenga (conservar identacion):
+
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "5000:5000"
+  redis:
+    image: "redis:alpine"
+
+7. En una terminal posicionarse en el directorio (del Host, por ej cd "cd /c/Users/dchavez/composetest/") y ejecutar:
+docker-compose up
+
+8. En caso de estar en un Linux ir a un navegador e ir a:
+http://localhost:5000/
+
+9. En caso de estar usando una Virtual ver la IP de la vm (en otra terminal):
+
+Y usar tal IP en el browser.
+10. En otra terminal (sin terminar el programa en la otra, no hacer ctrl+c):
+11. Ver los containers levantados:
+docker ps
+12. Ver las imagenes:
+docker images
+Inspeccionar las imagenes:
+docker inspect composetest_web
+docker inspect redis:alpine
+13. Refrescar varias veces el browser. Que se muestra?
+14. En la segunda terminal (posicionarse en cd /c/Users/dchavez/composetest) ejecutar:
+docker-compose down
+Si en la primera se para con ctrl+c se apaga la aplicación y los containers pero no se borran y tampoco la red creada.
+15. Editar el docker-compose.yml para agregar un volumen (conservar identacion):
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/code
+  redis:
+    image: "redis:alpine"
+
+16. Levantarlo:
+docker-compose up
+17. En el file system del Host, modificar el app.py,agregando por ej un "!":
+return 'Hello from Docker! I have been seen {} times.\n'.format(count)
+Probar en el browser si la modificacion se realizo.
+Podria llegar a haber errores en Toolbox para ciertas versiones de Windows. 
+En caso de errores graves, parar el compose, borrar la imagen creada, y reiniciar el Host. 
+18. Bajar de nuevo:
+docker-compose down
+19. Levantar en modo detachado:
+docker-compose up -d
+20. Ver lo que se levanto (contenedores relacionados a este compose):
+docker-compose ps
+21. Ver las variables de entorno del servicio web levantado:
+docker-compose run web env
+22. Bajar:
+docker-compose stop
+23. Remover, incluyendo el volumen creado:
+docker-compose down --volumes
+
+

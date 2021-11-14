@@ -1,0 +1,98 @@
+1. Levantar docker. 
+Opcional: Crear un usuario en Docker Hub: https://hub.docker.com/
+2. Utilizar la carpeta con el codigo ya provisto o bajarlo de:
+https://github.com/diegochavezcarro/pythondocker
+3. Observar si se esta dentro del directorio pythondocker y ejecutar ls o dir para ver si 
+estan los tres archivos ahi. Al utilizar Docker for Windows el cambio de directorio se puede hacer asi:
+cd /C/diego/cursos/mug/itau/docker2018/itau2019/docker_labs/python/pythondocker
+4. Crear una imagen a partir del Dockerfile, tagueandola con por ej el nombre pythondocker 
+docker build -t pythondocker .
+El punto "." al final es importante, hace referencia al directorio actual.
+5. Ver si se creo la imagen en el repositorio local:
+docker images
+tambien:
+docker image ls
+6. Ejecutar la aplicacion:
+docker run -p 4000:80 pythondocker 
+7. Ver en un browser (si se ejecuta en linux):
+http://localhost:4000/
+Si se utiliza una virtual ver cual IP se asigno al server, por ej:
+http://192.168.99.100:4000/
+8. Tambien se puede ejecutar el comando curl si se usa una terminal en linux:
+curl http://192.168.99.100:4000/
+9. Apagar la aplicacion con ctrl+c
+10. Ejecutar:
+docker ps
+Apagar el container, por ej:
+docker stop 9c9d43a3cc0b 
+Otra opción:
+docker container stop 9c9d43a3cc0b
+Se puede borrar el contenedor:
+docker container rm 9c9d43a3cc0b
+11. Probar en modo detachado:
+docker run -d -p 4000:80 pythondocker
+12. Ver si se levanto y cual id se asigno:
+docker container ls
+13. Observar que el id del container se corresponde con lo mostrado en el browser en Hostname. Parar el container.
+14. Para compartir la imagen creada darse de alta en https://hub.docker.com/
+Luego loguearse en la terminal:
+docker login
+Ingresar usuario y password dados de alta.
+15. Taguear la imagen utilizando este formato "docker tag image username/repository:tag" por ej:
+docker tag pythondocker diegochavezcarro/pythondocker:parte1
+16. Ver las imagenes creadas:
+docker images
+Tambien se puede:
+docker image ls
+17. Publicar la imagen en el repositorio:
+docker push diegochavezcarro/pythondocker:parte1
+18. Ver en el repositorio de docker hub si se subio la imagen.
+19. Parar el anterior contenedor levantado así liberamos el puerto (si no lo paramos antes). Traer la imagen y ejecutar el container:
+docker run -d -p 4000:80 diegochavezcarro/pythondocker:parte1
+20. Probar en el browser. 
+21. Con "docker container ls -a" podemos ver todos los contenedores, incluso los que se pararon.
+Por qué se ven tantos?
+22. Utilizando el id del container levantado ingresar en el mismo con un bash:
+docker exec -it d2f36e666000 bash
+En la terminal devuelta probar comandos de linux, por ej "pwd", "ls"
+Ejecutar:
+ps aux
+QuŽ se observa? Por que sucedio eso?
+Instalar el comando "ps"
+apt-get update 
+apt-get install --reinstall procps  
+Y ejecutar nuevamente:
+ps aux
+Qué procesos se observan?
+Qué Process ID tiene el proceso "python app.py"?
+23. Levantar otra terminal.
+En este momento volvemos a estar en el host.
+24. Ver quŽ procesos est‡n corriendo en la vm que tiene docker:
+Caso maquina virtual:
+Conectarse por ssh y ejecutar "ps aux"
+Caso Linux:
+ps aux
+Caso Docker for MAC/WIN:
+https://github.com/justincormack/nsenter1
+Con este comando podr’an verse los procesos que corren en el Docker Host:
+screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+(Para matar la terminal: Ctrl-a k)
+La terminal levantada no es muy amigable. Es mejor usar un contenedor intermedio con permisos para acceder al Host:
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+Estas opciones mapean el espacio de nombres del docker para poder acceder a una terminal. 
+Ver la informacion que mas nos interesa:
+ps aux | grep app.py
+QuŽ significa esto?
+QuŽ Process ID tiene el proceso "python app.py"? D—nde se est‡ ejecutando el mismo?
+25. Si al final se quieren borrar todos los containers (previamente deberian estar parados):
+docker container rm $(docker container ls -a -q)
+Y si se quieren eliminar todas las imagenes (si despues queremos bajar las mismas imagenes va a tardar mucho mas):
+docker image rm $(docker image ls -a -q) -f
+El "-f" es modo forzado. Se utiliza en este caso debido a que hay im‡genes que dependen de otras.
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+1. Instalacion:
+Instrucciones para instalar Docker en Windows con WSL2:
+a. Habilitar WSL2: 
+     https://docs.microsoft.com/en-us/windows/wsl/install 
+     En caso de tener problemas: 
+     https://docs.microsoft.com/en-us/windows/wsl/install-manual
+b. Instalar Docker Desktop for Windows:
+     https://docs.docker.com/docker-for-windows/install/
+     En caso de haber problemas, verificar: 
+     https://docs.docker.com/docker-for-windows/troubleshoot/#virtualization-must-be-enabled
+     Si esto ultimo no esta quizas haya modificar a nivel BIOS
+MacOS:
+https://docs.docker.com/desktop/mac/install/
+Ubuntu (nativo, en el caso WSL2 no es necesario):
+https://docs.docker.com/engine/install/ubuntu/
+
+2. El primer ejercicio es Lab1_ImagesContainers
+3. El segundo es el de la carpeta python, el codigo esta incluido en la carpeta
+asi no se lo tienen que bajar de github.
+4. El tercero es node.
+5. El cuarto de java.
+6. El quinto es el de Volumenes.
+7. El sexto es el de Network
+8. El septimo es el de Compose.
+9. Opcional: Ejercicio con Windows Containers (Docker for Windows, en Hyper V): LabWinContainers
+

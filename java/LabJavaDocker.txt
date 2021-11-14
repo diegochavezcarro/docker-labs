@@ -1,0 +1,33 @@
+1. Levantar docker. Click en "Docker Quick Start Terminal" si se tiene Docker Toolbox: Se abrirá un
+terminal con docker ya seteado, al ejecutar "docker version" deberian aparecer versiones tanto del cliente como del servidor. 
+En el caso Docker for Windows hacer click en "Docker for Windows" y levantar una terminar Powershell como administrador.
+Caso Linux abrir terminal y ejecutar "docker version".
+Crear un usuario en Docker Hub: https://hub.docker.com/
+2. Localmente, en una carpeta donde va a estar nuestro código ejecutar (Reemplazar diegochavezcarro por su nombre de usuario):
+git clone https://github.com/diegochavezcarro/getstartdocker.git
+Si no se tiene git instalado bajarse el zip del proyecto.
+3. Posicionarse donde esta el codigo (raiz del proyecto, donde estan el pom.xml y el Dockerfile):
+Mantenerse en la terminal de Docker. Por ej:
+cd /C/tools/workspaces/getstartdocker/getstartdocker
+4. Si se quiere subir la imagen posteriormente al Docker Hub propio modificar el pom.xml:
+	<properties>
+		<java.version>1.8</java.version>
+		<docker.image.prefix>tunombreusuario</docker.image.prefix>
+	</properties>
+5. Crear la imagen usando el Dockerfile y el plugin de Spotify de Maven:
+./mvnw install dockerfile:build
+6. Ver si se creo con:
+docker image ls
+7. Subirla al Docker Hub propio:
+Ingresar usuario y password creados en Docker Hub:
+docker login
+Subir imagen usando plugin de Spotify:
+./mvnw dockerfile:push
+Tambien es posible subirla sin el plugin:
+docker push diegochavezcarro/getstartdocker
+8. Ver si se subio en https://hub.docker.com
+9. Instanciar la aplicacion:
+docker run -p 8080:8080 -t diegochavezcarro/getstartdocker
+10. Acceder por browser, si se esta usando una virtual para docker usar su ip, por ej:
+http://192.168.99.100:8080/
+En los dem‡s casos utilizar localhost

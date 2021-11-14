@@ -1,0 +1,11 @@
+1. Levantar Docker for Windows.
+2. Botón derecho sobre la ballena en el rincón inferior derecho, Switch to Windows Containers.
+3. En una terminal Powershell como admin, ejecutar:
+docker version
+docker container run -it mcr.microsoft.com/powershell pwsh.exe
+4. Ver containers e imagenes.
+docker container ls
+docker image ls
+5. Ejecutar un ping dentro del container. Ver este proceso con el comando "ps" adentro y afuera (abrir otra Terminal) 
+del contenedor y comparar Processes ID.
+

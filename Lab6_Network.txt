@@ -1,0 +1,53 @@
+1. Levantar un container con la imagen busybox:
+docker run -itd --name=container1 busybox
+--name es para darle un nombre al container
+2. Crear otro container:
+docker run -itd --name=container2 busybox
+Cuantas imagenes creadas hay de busybox?
+3. Ver la red bridge que viene por defecto:
+docker network ls
+docker network inspect bridge
+Que IPs fueron asignadas a los containers?
+Por ej:
+container1: 172.17.0.2
+container2: 172.17.0.3
+4. Atacharse al container1, tendremos permisos de root:
+docker attach container1
+Ejecutar:
+ifconfig
+ping 172.17.0.3 
+ping container2
+cat /etc/hosts
+5. Para detacharse sin parar al container no cerrar la terminal y abrir otra.
+
+6. Crear otra red, del tipo bridge:
+docker network create --driver bridge mired
+7. Crear un contenedor que use esta red:
+docker run --network=mired -itd --name=container3 busybox
+8. Ver la red creada:
+docker network inspect mired
+9. Conectarse al ultimo container:
+docker attach container3
+10. Hacer ping a alguno de los anteriores containers:
+ping 172.17.0.2
+Que paso?
+Abrir otra terminal sin cerrar la actual.
+
+11. Conectar el container2 a la red mired:
+docker network connect mired container2
+12. Ejecutar:
+docker network inspect mired
+docker network inspect bridge
+Que paso en ambas redes?
+13. Conectar hacia el container3:
+docker attach container3
+14: Ejecutar ping hacia el container2, tanto con su IP para la red mired como con su nombre (container2)
+Que paso?
+
+15. Volver a estado inicial:
+docker network disconnect mired container2
+docker network disconnect mired container3
+docker network rm mired
+Con docker ps ver los id de los containers, darles stop, luego borrarlos y luego borrar la imagen de busybox.
+ 
+
