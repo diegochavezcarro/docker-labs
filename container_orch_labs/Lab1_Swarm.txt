@@ -1,0 +1,132 @@
+1. Crear un directorio y bajarse los archivos del repositorio de Github llamado:
+https://github.com/diegochavezcarro/getstarted2
+Se puede bajar con comandos de Git o ir a Clone or download->Download ZIP
+En Windows dejar como raíz de estos archivos un directorio del estilo:
+/c/Users/dchavez/swarmtest
+En Linux en la home del usuario.
+2. Observar el docker-compose.yml
+3. Ver las VMs actualmente creadas:
+docker-machine ls
+3. Crear una maquina virtual (en caso de Win10 PRO con Hyper-V ver DockerMachineHyperV.txt)
+docker-machine create --driver virtualbox myvm1
+4. Ver la IP asignada, con cualquiera de estos dos comandos:
+docker-machine ls
+docker-machine env myvm1
+5. Crear un swarm manager, usando la IP asignada:
+docker-machine ssh myvm1 "docker swarm init --advertise-addr 192.168.99.101"
+Ver la salida del comando.
+6. Copiar el docker-compose.yml al master del swarm:
+docker-machine scp docker-compose.yml myvm1:~
+Si arroja algun error debido a versiones o software faltante probar lo siguiente:
+docker-machine env myvm1
+Copiar el comando que muestra la salida del anterior:
+eval $("C:\Program Files\Docker Toolbox\docker-machine.exe" env myvm1)
+En el caso de Powershell el comando es:
+& "C:\Program Files\Docker\Docker\Resources\bin\docker-machine.exe" env myvm1 | Invoke-Expression
+Ver si estamos posicionados en myvm1 (se vera un asterisco) con:
+docker-machine ls
+7. Si anduvo el scp ejecutar:
+docker-machine ssh myvm1 "docker stack deploy -c docker-compose.yml getstartedlab"
+Si no anduvo el scp y ejecutamos el comando del paso anterior, es que el cliente docker ya apunta a la myvm1:
+docker stack deploy -c docker-compose.yml getstartedlab
+8. Si estamos apuntando a myvm1 ver lo que se levanto:
+docker ps
+docker stack services getstartedlab
+docker stack ps getstartedlab
+Si no estamos logueados:
+docker-machine ssh myvm1 "docker ps"
+y asi con los demas.
+Que es lo que se puede ver?
+9. Acceder con el browser a la ip asignada (puerto 80) 
+http://192.168.99.101/
+Refrescar la pagina varias veces. Ver que sucede. Que se muestra en el Hostname?
+10. Acceder al Visualizer:
+http://192.168.99.101:8080
+Que se ve?
+11. Si se esta logueado a myvm1 ejecutar 
+docker ps
+Parar uno de los containers de la parte web (diegochavezcarro/get-started:part1):
+docker stop 264d0b24f7d0
+Volver a ejecutar:
+docker ps
+Que paso?
+Y en el browser? Y el Visualizer?
+12. Para desloguearse de myvm1 ejecutar (caso Hyper-V ver DockerMachineHyperV.txt):
+eval $(docker-machine env -u)
+Caso Hyper-V:
+& "C:\Program Files\Docker\Docker\Resources\bin\docker-machine.exe" env -u | Invoke-Expression
+Ver en donde estamos logueados:
+docker-machine ls
+13. Crear otra maquina virtual (caso Hyper-v ver DockerMachineHyperV.txt, vm ya creada):
+docker-machine create --driver virtualbox myvm2
+14. Agregar la myvm2 al swarm como un worker, usando el comando devuelto por el paso 5.
+docker-machine ssh myvm2 "docker swarm join --token SWMTKN-1-103hhubah3xeorwks2h4rjzmy97tiqvlwclajbx509nzx9yim2-0mn9uie0gd6nu5lflvh6w0bds 192.168.99.101:2377"
+15. Acceder al Visualizer:
+http://192.168.99.101:8080
+Que se ve?
+16. Ejecutar:
+docker-machine ssh myvm1 "docker ps"
+17. Parar uno de los containers del servicio web:
+docker-machine ssh myvm1 "docker stop 7e6780d426ac"
+18. Ver lo que sucede en el Visualizer, en myvm1 y en la myvm2:
+docker-machine ssh myvm1 "docker ps"
+docker-machine ssh myvm2 "docker ps"
+docker-machine ssh myvm2 "docker stack ps getstartedlab"
+docker-machine ssh myvm1 "docker stack ps getstartedlab"
+Tambien ver la app en el browser.
+Que sucedio?
+Hacer lo mismo con dos containers mas.
+19. Crear otra virtual:
+docker-machine create --driver virtualbox myvm3
+Caso Hyper-V:
+docker-machine create -d hyperv --hyperv-virtual-switch "myswitch" myvm3
+Agregarla al swarm como un worker:
+docker-machine ssh myvm3 "docker swarm join --token SWMTKN-1-103hhubah3xeorwks2h4rjzmy97tiqvlwclajbx509nzx9yim2-0mn9uie0gd6nu5lflvh6w0bds 192.168.99.101:2377"
+20. Ver en el Visualizer como quedo.
+Tambien ver el estado de las vms y ver quien es el master:
+docker-machine ssh myvm1 "docker node ls"
+Acceder a la aplicación mediante la ip de la myvm1 y la de la myvm2 para comprobar el "ingress mode"
+21. Hacer q myvm2 abandone el cluster:
+docker-machine ssh myvm2 "docker swarm leave --force"
+Refrescar el Visualizer. Qué paso?
+docker-machine ssh myvm1 "docker node rm myvm2 --force"
+Refrescar el Visualizer. Qué paso?
+22. Ver que sucedio en el Visualizer, la app y los containers levantados.
+23. Una vez terminado, salir de forma ordenada:
+docker-machine ssh myvm1 "docker node rm myvm2 --force"
+docker-machine ssh myvm1 "docker node rm myvm3 --force"
+docker-machine rm myvm2 (opcional)
+docker-machine rm myvm3
+docker-machine ssh myvm1 "docker stack rm getstartedlab"
+docker-machine ssh myvm1 "docker swarm leave --force"
+docker-machine rm myvm1 (opcional)
+24. Ejecutar:
+docker-machine ssh myvm1 "docker volume ls"
+Qué paso?
+25. Si se quiere borrese tal volumen:
+docker-machine ssh myvm1 "docker volume rm getstartedlab_db-data"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+En caso de estar usando Hyper-V, ahora se va a necesitar utilizar Virtual Box. Como no se pueden
+utilizar ambos hipervisores a la vez se pueden crear dos opciones de boot. 
+En Windows 10 si actualmente no está habilitado Hyper-V y se está usando Virtual Box realizar lo siguiente
+en una terminal Powershell en modo admin:
+bcdedit /copy {current} /d "Windows 10 Hyper-V"
+The entry was successfully copied to {13614748-3f2b-11e8-afea-54e1ad74d8b6}.
+bcdedit /set {13614748-3f2b-11e8-afea-54e1ad74d8b6} hypervisorlaunchtype auto
+Esto creará otra opción de boot en la cual estará habilitado Hyper V. Entrar con esa opción.
+Realizar lo siguiente utilizando cmd o Powershell en modo admin.
+
+1. Instalar vagrant.
+https://www.vagrantup.com/downloads.html
+2. Instalar el plugin que modifica el archivo hosts:
+vagrant plugin install vagrant-hostmanager 
+3. Bajarse DC/OS Vagrant:
+git clone https://github.com/dcos/dcos-vagrant
+4. Elegir una config. Por ej 2 agents, 1 public agent y 1 master.
+copy VagrantConfig-1m-2a-1p.yaml VagrantConfig.yaml
+5. Levantar todo:
+vagrant up
+6. Ver la consola:
+http://m1.dcos/
+Se puede hacer log in con el usuario de github.
+7. Ver el Marathon:
+http://m1.dcos:8080
+8. Ver el Mesos original:
+http://m1.dcos:5050/
+9. Bajarse el cliente siguiendo los pasos que muestra la consola, ángulo superior derecho del DCOS. Agregar el dcos.exe al PATH.
+10. Instalar un ejemplo (usar el q está en esta carpeta en vez del q viene por ejemplo. Copiarlo en ese directorio):
+dcos marathon app add examples/java-spring/java-spring-docker.json
+Seleccionar la aplicación que aparece como desplegada en el Marathon, podremos ver las instancias levantadas
+y abajo de las mismas aparecerán las IPs y puertos asignados. Se pueden levantar esos links en el browser para ver las
+apps andando.
+11. Instalar el marathon load balancer:
+dcos package install marathon-lb --yes
+Una vez instalado el paquete va a poderse ver la app en el browser como:
+http://spring.acme.org/
+Refrescar varias veces para poder ver lo que exponen las instancias levantadas.
+12.Para parar conservar el estado:
+vagrant suspend
+Para levantar luego, con el estado anterior. 
+vagrant resume
+Si se quiere borrar todo:
+vagrant destroy -f
