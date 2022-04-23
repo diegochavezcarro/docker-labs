@@ -1,1 +1,13 @@
-
+1. Bajarse el codigo de https://github.com/diegochavezcarro/micro-gogin-tracing1
+2. Crear una imagen:
+docker build -t diegochavezcarro/micro-gogin-tracing1 .
+3. Listar las imagenes y ver el tamaño de la misma:
+docker image ls
+Que tamaño tiene?
+4. Crear un contenedor:
+docker run -it -p 4000:8080 diegochavezcarro/micro-gogin-tracing1
+5. Probar en un browser:
+http://localhost:4000/hello
+6. Ver que tiene dentro (obtener el identificador del container con docker container ls):
+docker exec -it 9e36803daf6c sh
+7. Probar "go", "ipconfig", "ping"
