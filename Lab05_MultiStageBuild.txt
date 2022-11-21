@@ -11,3 +11,5 @@ http://localhost:4000/hello
 6. Ver que tiene dentro (obtener el identificador del container con docker container ls):
 docker exec -it 9e36803daf6c sh
 7. Probar "go", "ipconfig", "ping"
+8. En otra terminal, fuera del contenedor, a nivel del Docker Host ver:
+ps -axjf 
