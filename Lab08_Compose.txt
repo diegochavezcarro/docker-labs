@@ -65,7 +65,7 @@ docker inspect redis:alpine
 13. Refrescar varias veces el browser. Que se muestra?
 14. En la segunda terminal (posicionarse en cd /c/Users/dchavez/composetest) ejecutar:
 docker-compose down
-Si en la primera se para con ctrl+c se apaga la aplicación y los containers pero no se borran y tampoco la red creada.
+Si en la primera se para con ctrl+c se apaga la aplicaciÃ³n y los containers pero no se borran y tampoco la red creada.
 15. Editar el docker-compose.yml para agregar un volumen (conservar identacion):
 version: '3'
 services:
