@@ -1,5 +1,18 @@
 1. Instalacion:
-Instrucciones para instalar Docker en Windows con WSL2:
+La principal recomendacion es usar algun Linux (esto va a resultar mas didactico) como por ejemplo Ubuntu: 
+https://docs.docker.com/engine/install/ubuntu/
+Luego hacer que se pueda manejar Docker como un usuario no root:
+https://docs.docker.com/engine/install/linux-postinstall/
+
+En el caso de usar Windows, la primera recomendacion es utilizar una virtual que tenga un Linux, dentro de la misma instalar docker como es explicado arriba. 
+En el caso de utilizar VirtualBox y Ubuntu:
+https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview
+Aclaraciones importantes: 
+a. En el estadio actual de Windows, WSL2 y etc, elegirle 2 procesadores. 
+b. Luego de instalado Ubuntu (https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview),instalar las extensiones de VBox no funciona como en la guia. Buscar a la izquierda dentro de la VM la imagen con forma de disco y abrirla, tampoco anda el autorun, elegir sobre el archivo autorun.sh, boton derecho y "Run as a Program". Reiniciar la VM. Luego se puede habilitar el copy paste bidireccional (dentro-fuera de la VM-Host) y tambien el resize de la pantalla (en la interfaz de la virtual, abajo sobre la imagen de una pantalla, botón derecho sobre la misma ->virtual screen 1 ->resize).
+Luego instalar docker como en el caso Linux.
+
+Si se quiere usar al Windows mismo, usar Docker Desktop con backend WSL2:
 a. Habilitar WSL2: 
      https://docs.microsoft.com/en-us/windows/wsl/install 
      En caso de tener problemas: 
@@ -8,19 +21,23 @@ b. Instalar Docker Desktop for Windows:
      https://docs.docker.com/docker-for-windows/install/
      En caso de haber problemas, verificar: 
      https://docs.docker.com/docker-for-windows/troubleshoot/#virtualization-must-be-enabled
-     Si esto ultimo no esta quizas haya modificar a nivel BIOS
+     Si esto ultimo no esta quizas haya modificar a nivel BIOS.
+
 MacOS:
 https://docs.docker.com/desktop/mac/install/
-Ubuntu (nativo, en el caso WSL2 no es necesario):
-https://docs.docker.com/engine/install/ubuntu/
 
-2. El primer ejercicio es Lab1_ImagesContainers
-3. El segundo es el de la carpeta python, el codigo esta incluido en la carpeta
-asi no se lo tienen que bajar de github.
-4. El tercero es node.
-5. El cuarto de java.
-6. El quinto es el de Volumenes.
-7. El sexto es el de Network
-8. El septimo es el de Compose.
-9. Opcional: Ejercicio con Windows Containers (Docker for Windows, en Hyper V): LabWinContainers
+En todos los casos para ver si esta instalado Docker correctamente ejecutar
+docker version
+Debera verse cliente y servidor. Si no se ve servidor hay que levantarlo. En caso Docker Desktop levantar el programa, ver sobre la ballena que aparece abajo a la derecha en Windows o arriba a la derecha en MacOS y ver si esta levantado. En el caso Windows con WSL2 puede usarse Docker dsd Powershell o desde una terminal Linux (por ej Ubuntu).
+En el caso Linux para levantar el Docker Daemon:
+sudo service docker start
+Parar pararlo: 
+sudo service docker stop
+sudo systemctl stop docker.socket
 
+2. El primer ejercicio es Lab01_ImagesContainers
+3. El segundo es el de la carpeta python.
+4. El tercero el de la carpeta node.
+5. El cuarto, java.
+6. Seguir en la raiz del proyecto con la numeracion del 05 hacia adelante.
+9. Opcional: Ejercicio con Windows Containers (Docker for Windows): LabWinContainers
