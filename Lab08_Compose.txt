@@ -1,7 +1,6 @@
 
 1. Ver si esta instalado docker-compose:
-docker-compose -version
-Si no esta instalado docker-compose instalarlo. 
+docker compose version
 2. Crear un directorio en el Host, tener en cuenta que el mismo deberia estar
 en un directorio compartido, usando algun virtualizador como VBox o con las tools de Docker Desktop:
 Por ejemplo nombrarlo composetest, dentro del directorio home del usuario  
