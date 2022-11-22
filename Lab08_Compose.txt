@@ -36,7 +36,7 @@ CMD ["python", "app.py"]
 
 6. Crear un archivo docker-compose.yml que contenga (conservar identacion):
 
-version: '3'
+version: '3.7'
 services:
   web:
     build: .
@@ -46,7 +46,7 @@ services:
     image: "redis:alpine"
 
 7. En una terminal posicionarse en el directorio (del Host, por ej cd "cd /c/Users/dchavez/composetest/") y ejecutar:
-docker-compose up
+docker compose up
 
 8. En caso de estar en un Linux ir a un navegador e ir a:
 http://localhost:5000/
@@ -64,10 +64,10 @@ docker inspect composetest_web
 docker inspect redis:alpine
 13. Refrescar varias veces el browser. Que se muestra?
 14. En la segunda terminal (posicionarse en cd /c/Users/dchavez/composetest) ejecutar:
-docker-compose down
+docker compose down
 Si en la primera se para con ctrl+c se apaga la aplicación y los containers pero no se borran y tampoco la red creada.
 15. Editar el docker-compose.yml para agregar un volumen (conservar identacion):
-version: '3'
+version: '3.7'
 services:
   web:
     build: .
@@ -79,23 +79,23 @@ services:
     image: "redis:alpine"
 
 16. Levantarlo:
-docker-compose up
+docker compose up
 17. En el file system del Host, modificar el app.py,agregando por ej un "!":
 return 'Hello from Docker! I have been seen {} times.\n'.format(count)
 Probar en el browser si la modificacion se realizo.
 Podria llegar a haber errores en Toolbox para ciertas versiones de Windows. 
 En caso de errores graves, parar el compose, borrar la imagen creada, y reiniciar el Host. 
 18. Bajar de nuevo:
-docker-compose down
+docker compose down
 19. Levantar en modo detachado:
-docker-compose up -d
+docker compose up -d
 20. Ver lo que se levanto (contenedores relacionados a este compose):
-docker-compose ps
+docker compose ps
 21. Ver las variables de entorno del servicio web levantado:
-docker-compose run web env
+docker compose run web env
 22. Bajar:
 docker-compose stop
 23. Remover, incluyendo el volumen creado:
-docker-compose down --volumes
+docker compose down --volumes
 
 
