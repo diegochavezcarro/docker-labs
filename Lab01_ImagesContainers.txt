@@ -1,8 +1,5 @@
-1. Levantar una Terminal. En el caso Docker for Windows levantar terminal Powershell como administrador.
-En caso de Linux levantar terminal comun e ir a paso 3. 
-2. Observar que IP se asigno a la vm default, si se usa una. 
-Para Docker for Windows, for MAC y para Linux la IP estará mapeada hacia el localhost.
-3. Listar los containers levantados:
+1. Levantar una Terminal. 
+2. Listar los containers levantados:
 docker ps
 Mismo resultado con:
 docker container ls
@@ -12,41 +9,39 @@ docker ps -a
 Mismo resultado con:
 docker container ls -a
 Se ve algo?
-4. Listar las imagenes:
+3. Listar las imagenes:
 docker images
 Mismo resultado con:
 docker image ls
-Ver todas las imagenes, incluyendo las ocultas:
-docker images -a
 Que se observa?
-5. Bajarse una imagen:
+4. Bajarse una imagen:
 docker pull ubuntu
-6. Ejecutar pasos 3 y 4 de vuelta. Que sucedio?
-7. Crear un contenedor:
+5. Ejecutar pasos 3 y 4 de vuelta. Que sucedio?
+6. Crear un contenedor:
 docker create -t -i ubuntu /bin/bash
 -t da una terminal
 -i es modo interactivo (-d es modo detachado)
 /bin/bash ejecutara (cuando sea levantado) el bash del ubuntu
-8. Ejecutar los pasos 3 y 4. Que sucedio ahora?
-9. Levantar el contenedor creado en paso 7, utilizando el id devuelto en el mismo, por ej:
+7. Ejecutar los pasos 3 y 4. Que sucedio ahora?
+8. Levantar el contenedor creado en paso 7, utilizando el id devuelto en el mismo, por ej:
 docker start -a -i 3ace1602e1ae62d940e0e511bbd9cae08d19559fd9a36cd0111bc03a8840fc9b
 -a levanta la standard out.
 -i modo interactivo.
 En otra terminal ejecutar pasos 3 y 4. Que sucedio?
-10. Ejecutar comandos tipicos de linux como ls, pwd.
-11. Salir de esa terminal con exit.
-12. Ejecutar
-docker ps -a
-13. Borrar el contenedor utilizando el id devuelto en el paso anterior
-docker rm 5255e3ef1d38
-14. Borrar la imagen creada:
-docker rmi ubuntu
-15. Ejecutar:
+9. Ejecutar comandos tipicos de linux como ls, pwd.
+10. Salir de esa terminal con exit.
+11. Ejecutar
+docker container ls -a
+12. Borrar el contenedor utilizando el id devuelto en el paso anterior
+docker container rm 5255e3ef1d38
+13. Borrar la imagen creada:
+docker image rm ubuntu
+14. Ejecutar:
 docker run -i -t ubuntu /bin/bash
 Que paso?
-16. Ejecutar:
+15. Ejecutar:
 docker run hello-world
 Es el "hello world" de Docker, ver lo que hace.
-17. Borrar containers e imagenes creadas.
+16. Borrar containers e imagenes creadas.
 
  
