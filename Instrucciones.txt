@@ -4,12 +4,19 @@ https://docs.docker.com/engine/install/ubuntu/
 Luego hacer que se pueda manejar Docker como un usuario no root:
 https://docs.docker.com/engine/install/linux-postinstall/
 
-En el caso de usar Windows, la primera recomendacion es utilizar una virtual que tenga un Linux, dentro de la misma instalar docker como es explicado arriba. 
+En el caso de usar Windows, la primera recomendacion es utilizar una virtual que tenga un Linux, dentro 
+de la misma instalar docker como es explicado arriba. 
 En el caso de utilizar VirtualBox y Ubuntu:
 https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview
 Aclaraciones importantes: 
 a. En el estadio actual de Windows, WSL2 y etc, elegirle 2 procesadores. 
-b. Luego de instalado Ubuntu (https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview),instalar las extensiones de VBox no funciona como en la guia. Buscar a la izquierda dentro de la VM la imagen con forma de disco y abrirla, tampoco anda el autorun, elegir sobre el archivo autorun.sh, boton derecho y "Run as a Program". Reiniciar la VM. Luego se puede habilitar el copy paste bidireccional (dentro-fuera de la VM-Host) y tambien el resize de la pantalla (en la interfaz de la virtual, abajo sobre la imagen de una pantalla, botón derecho sobre la misma ->virtual screen 1 ->resize).
+b. Usar por lo menos 40GB de storage (vdi).
+c. Luego de instalado Ubuntu (https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview),instalar 
+las extensiones de VBox no funciona como en la guia. Buscar a la izquierda dentro de la VM la imagen con 
+forma de disco y abrirla, tampoco anda el autorun, elegir sobre el archivo autorun.sh, boton derecho y 
+"Run as a Program". Reiniciar la VM. Luego se puede habilitar el copy paste bidireccional (dentro-fuera 
+de la VM-Host) y tambien el resize de la pantalla (en la interfaz de la virtual, abajo sobre la imagen de 
+una pantalla, botón derecho sobre la misma ->virtual screen 1 ->resize).
 Luego instalar docker como en el caso Linux.
 
 Si se quiere usar al Windows mismo, usar Docker Desktop con backend WSL2:
@@ -28,7 +35,9 @@ https://docs.docker.com/desktop/mac/install/
 
 En todos los casos para ver si esta instalado Docker correctamente ejecutar
 docker version
-Debera verse cliente y servidor. Si no se ve servidor hay que levantarlo. En caso Docker Desktop levantar el programa, ver sobre la ballena que aparece abajo a la derecha en Windows o arriba a la derecha en MacOS y ver si esta levantado. En el caso Windows con WSL2 puede usarse Docker dsd Powershell o desde una terminal Linux (por ej Ubuntu).
+Debera verse cliente y servidor. Si no se ve servidor hay que levantarlo. En caso Docker Desktop levantar
+el programa, ver sobre la ballena que aparece abajo a la derecha en Windows o arriba a la derecha en MacOS
+y ver si esta levantado. En el caso Windows con WSL2 puede usarse Docker dsd Powershell o desde una terminal Linux (por ej Ubuntu).
 En el caso Linux para levantar el Docker Daemon:
 sudo service docker start
 Parar pararlo: 
