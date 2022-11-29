@@ -2,7 +2,7 @@
 1. Ver si esta instalado docker-compose:
 docker compose version
 2. Crear un directorio en el Host, tener en cuenta que el mismo deberia estar
-en un directorio compartido, usando algun virtualizador como VBox o con las tools de Docker Desktop:
+en un directorio compartido, por lo general la home del usuario:
 Por ejemplo nombrarlo composetest, dentro del directorio home del usuario  
 3. Dentro del directorio creado crear un programa python, llamado app.py que contenga lo siguiente (conservar identacion):
 
@@ -51,8 +51,9 @@ docker compose up
 http://localhost:5000/
 
 9. En caso de estar usando una Virtual ver la IP de la vm (en otra terminal):
-
-Y usar tal IP en el browser.
+minikube ip
+Y usar tal IP en el browser. Por lo general se puede usar localhost, ya que las tools de docker mapean
+contra el mismo.
 10. En otra terminal (sin terminar el programa en la otra, no hacer ctrl+c):
 11. Ver los containers levantados:
 docker ps
@@ -62,7 +63,7 @@ Inspeccionar las imagenes:
 docker inspect composetest_web
 docker inspect redis:alpine
 13. Refrescar varias veces el browser. Que se muestra?
-14. En la segunda terminal (posicionarse en cd /c/Users/dchavez/composetest) ejecutar:
+14. En la segunda terminal (posicionarse en donde este el yaml de docker compose) ejecutar:
 docker compose down
 Si en la primera se para con ctrl+c se apaga la aplicación y los containers pero no se borran y tampoco la red creada.
 15. Editar el docker-compose.yml para agregar un volumen (conservar identacion):
@@ -82,8 +83,6 @@ docker compose up
 17. En el file system del Host, modificar el app.py,agregando por ej un "!":
 return 'Hello from Docker! I have been seen {} times.\n'.format(count)
 Probar en el browser si la modificacion se realizo.
-Podria llegar a haber errores en Toolbox para ciertas versiones de Windows. 
-En caso de errores graves, parar el compose, borrar la imagen creada, y reiniciar el Host. 
 18. Bajar de nuevo:
 docker compose down
 19. Levantar en modo detachado:
