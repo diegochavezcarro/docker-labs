@@ -2,7 +2,7 @@
 Caso Linux abrir terminal y ejecutar "docker version".
 Opcional: Crear un usuario en Docker Hub: https://hub.docker.com/
 
-2. Opcional: 
+2. Opcional, si se quiere modificar el codigo con pruebas propias: 
 Forkear https://github.com/diegochavezcarro/nodedocker.git
 Luego clonar el repo generado en sus repositorios (personal o de organizacion):
 git clone https://github.com/nombre-organizacion/nodedocker.git
@@ -15,14 +15,13 @@ git push -u origin master
 Se vera en el repo de github, por ejemplo:
 https://github.com/nombre-organizacion/nodedocker
 
-5. Crear una imagen de docker en el registro local de imagenes de docker (posicionados en la carpeta nodedocker, el punto al final del comando es importante, hace referencia a la carpeta actual):
+5. Crear una imagen de docker en el cache local de imagenes de docker (posicionados en la carpeta nodedocker, el punto al final del comando es importante, hace referencia a la carpeta actual):
 docker build -t nodedocker .
-6. Ver si se creó la imagen:
+6. Ver si se creÃ³ la imagen:
 docker image ls
 7. Levantar un contenedor a partir de la imagen creada:
 docker run --name node-container -p 8080:8080 -d nodedocker
 8. En el browser ir a http://localhost:8080/
-En el caso Docker for Toolbox ver qué IP está usando la Virtual creada (donde corre el servidor de docker).
 9. En la terminal ejecutar lo siguiente para ver si se creo el contenedor:
 docker container ls
 10. Opcional: Parar al contenedor, y borrarlo:
@@ -32,7 +31,7 @@ docker rm node-container
 docker tag nodedocker diegochavezcarro/hellonodedocker:v1
 12. Subir a Docker Hub:
 docker push diegochavezcarro/hellonodedocker:v1
-Si pide usuario y contraseña para docker hub ingresar los creados en el paso 1.
+Si pide usuario y contraseÃ±a para docker hub ingresar los creados en el paso 1.
 13. Ver si se puede levantar un contenedor a partir de la imagen subida a dockerhub
 (si no se paro el anterior contenedor reemplazar el primer puerto por otro numero):
 docker run -p 8080:8080 -d diegochavezcarro/hellonodedocker:v1
