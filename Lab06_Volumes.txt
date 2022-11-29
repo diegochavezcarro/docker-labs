@@ -20,7 +20,6 @@ touch archivo2.txt
 Esa imagen se utiliza para docker for windows.
 
 Named Volumes:
-En el caso Docker for Windows conectarse a la myvm1 creada previamente
 1. Crear un container con un volumen: 
 docker container run -dit --name pruebavol --mount source=volumen,target=/vol alpine
 2. Ver si se creo el volumen:
@@ -36,10 +35,7 @@ Este último tambien se verá en una VM
 
 En docker for win y Mac conectarse al host con:
 docker run -it --rm --privileged --pid=host justincormack/nsenter1
-
-ls /mnt/sda1/var/lib/docker/volumes/volumen/_data
 ls /var/lib/docker/volumes/volumen/_data
-En MAC y linux solo aparecera el ultimo
 salir con exit.
 5. Entrar al contenedor creado:
 docker container exec -it pruebavol sh
@@ -49,7 +45,6 @@ cat /vol/file1
 7. Abrir otra Terminal. Ver el contenido generado en el docker host.
 
 cat /var/lib/docker/volumes/volumen/_data/file1
-cat /mnt/sda1/var/lib/docker/volumes/volumen/_data/file1
 
 Ver con:
 docker run -it --rm --privileged --pid=host justincormack/nsenter1
