@@ -12,7 +12,7 @@ docker images
 tambien:
 docker image ls
 6. Ejecutar la aplicacion:
-docker run -p 4000:80 pythondocker 
+docker run -p 4000:5000 pythondocker 
 7. Ver en un browser (en linux se esta en el mismo servidor, en Windows o macOS se mapea la IP de la virtual contra localhost):
 http://localhost:4000/
 8. Tambien se puede ejecutar el comando curl si se usa una terminal en linux:
@@ -25,7 +25,7 @@ docker container stop 9c9d43a3cc0b
 Se puede borrar el contenedor:
 docker container rm 9c9d43a3cc0b
 11. Probar en modo detachado:
-docker run -d -p 4000:80 pythondocker
+docker run -d -p 4000:5000 pythondocker
 12. Ver si se levanto y cual id se asigno:
 docker container ls
 13. Observar que el id del container se corresponde con lo mostrado en el browser en Hostname. Parar el container.
@@ -41,7 +41,7 @@ docker image ls
 docker push diegochavezcarro/pythondocker:parte1
 18. Ver en el repositorio de docker hub si se subio la imagen.
 19. Parar el anterior contenedor levantado así liberamos el puerto (si no lo paramos antes). Traer la imagen y ejecutar el container:
-docker run -d -p 4000:80 diegochavezcarro/pythondocker:parte1
+docker run -d -p 4000:5000 diegochavezcarro/pythondocker:parte1
 20. Probar en el browser. 
 21. Con "docker container ls -a" podemos ver todos los contenedores, incluso los que se pararon.
 Por qué se ven tantos?
