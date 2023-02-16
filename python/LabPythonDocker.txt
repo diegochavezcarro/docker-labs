@@ -46,7 +46,7 @@ docker run -d -p 4000:5000 diegochavezcarro/pythondocker:parte1
 21. Con "docker container ls -a" podemos ver todos los contenedores, incluso los que se pararon.
 Por qué se ven tantos?
 22. Utilizando el id del container levantado ingresar en el mismo con un bash:
-docker exec -it d2f36e666000 --bash
+docker exec -it d2f36e666000 sh
 En la terminal devuelta probar comandos de linux, por ej "pwd", "ls"
 Ejecutar:
 ps aux
