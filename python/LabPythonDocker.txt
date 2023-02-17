@@ -51,6 +51,7 @@ En la terminal devuelta probar comandos de linux, por ej "pwd", "ls"
 Ejecutar:
 ps aux
 Que se observa? Por que sucedio eso?
+Aqui se aclara que ese comando en las nuevas versiones de alpine esta incluido, pero si en una version vieja no lo esta habria que realizar los siguiente comandos. Si el comando ps existe y funciona continuar en el paso 23.
 Instalar el comando "ps"
 apt-get update 
 apt-get install --reinstall procps  
