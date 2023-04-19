@@ -4,7 +4,7 @@ https://docs.docker.com/engine/install/ubuntu/
 Luego hacer que se pueda manejar Docker como un usuario no root:
 https://docs.docker.com/engine/install/linux-postinstall/
 
-En el caso de usar Windows, la primera recomendacion es utilizar una virtual que tenga un Linux, dentro 
+En el caso de usar Windows, con una virtual que tenga un Linux, dentro 
 de la misma instalar docker como es explicado arriba. 
 En el caso de utilizar VirtualBox y Ubuntu:
 https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview
@@ -19,7 +19,7 @@ de la VM-Host) y tambien el resize de la pantalla (en la interfaz de la virtual,
 una pantalla, botón derecho sobre la misma ->virtual screen 1 ->resize).
 Luego instalar docker como en el caso Linux.
 
-Si se quiere usar al Windows mismo, usar Docker Desktop con backend WSL2:
+Si se quiere usar al Windows mismo, lo mas recomendado es usar Docker Desktop con backend WSL2:
 a. Habilitar WSL2: 
      https://docs.microsoft.com/en-us/windows/wsl/install 
      En caso de tener problemas: 
