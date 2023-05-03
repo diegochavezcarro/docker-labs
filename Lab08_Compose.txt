@@ -50,10 +50,7 @@ docker compose up
 8. En caso de estar en un Linux ir a un navegador e ir a:
 http://localhost:5000/
 
-9. En caso de estar usando una Virtual ver la IP de la vm (en otra terminal):
-minikube ip
-Y usar tal IP en el browser. Por lo general se puede usar localhost, ya que las tools de docker mapean
-contra el mismo.
+9. En caso de estar usando una Virtual ver la IP de la vm (en otra terminal)y  usar tal IP en el browser. Por lo general se puede usar localhost, ya que las tools de docker mapean contra el mismo.
 10. En otra terminal (sin terminar el programa en la otra, no hacer ctrl+c):
 11. Ver los containers levantados:
 docker ps
@@ -92,7 +89,7 @@ docker compose ps
 21. Ver las variables de entorno del servicio web levantado:
 docker compose run web env
 22. Bajar:
-docker-compose stop
+docker compose stop
 23. Remover, incluyendo el volumen creado:
 docker compose down --volumes
 
