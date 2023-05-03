@@ -4,7 +4,7 @@ docker compose version
 2. Crear un directorio en el Host, tener en cuenta que el mismo deberia estar
 en un directorio compartido, por lo general la home del usuario:
 Por ejemplo nombrarlo composetest, dentro del directorio home del usuario  
-3. Dentro del directorio creado crear un programa python, llamado app.py que contenga lo siguiente (conservar identacion):
+3. Dentro del directorio creado crear un programa python (si se quiere evitar esta parte tan manual usar el repo https://github.com/diegochavezcarro/composetest), llamado app.py que contenga lo siguiente (conservar identacion):
 
 from flask import Flask
 from redis import Redis
