@@ -18,6 +18,7 @@ ifconfig
 ping 172.17.0.3 
 ping container2
 cat /etc/hosts
+cat /etc/resolv.conf
 5. Para detacharse sin parar al container no cerrar la terminal y abrir otra.
 
 6. Crear otra red, del tipo bridge:
