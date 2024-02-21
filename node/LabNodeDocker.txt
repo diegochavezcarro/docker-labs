@@ -43,7 +43,7 @@ Ver los id de los contenedores:
 docker container ls
 Parar y borrar los contenedores:
 docker container stop 8e2e2b318b78
-docker rm stop 8e2e2b318b78
+docker stop rm 8e2e2b318b78
 Borrar las imagenes:
 docker image rm nodedocker
 docker image rm diegochavezcarro/hellonodedocker
