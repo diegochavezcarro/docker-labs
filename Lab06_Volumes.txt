@@ -16,8 +16,8 @@ Que se observa?
 5. Ejecutar:
 touch archivo2.txt
 6. Ver en el file system del Host. Que se observa?
-7. Apagar y borrar los contenedores. Borrar la imagen creada (ubuntu), pero no borrar docker4w/nsenter-dockerd
-Esa imagen se utiliza para docker for windows.
+7. Apagar y borrar los contenedores. 
+
 
 Named Volumes:
 1. Crear un container con un volumen: 
