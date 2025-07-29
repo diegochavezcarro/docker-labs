@@ -10,15 +10,22 @@ b. Instalar Docker Desktop for Windows:
      En caso de haber problemas, verificar: 
      https://docs.docker.com/docker-for-windows/troubleshoot/#virtualization-must-be-enabled
      Si esto ultimo no esta quizas haya modificar a nivel BIOS.
+Si no se puede usar WSL2, elegir HyperV como backend
 
 MacOS, Docker Desktop:
 https://docs.docker.com/desktop/mac/install/
+En caso de problemas de seguridad, ir por: 
+https://formulae.brew.sh/formula/docker
 
-Linux:
+Linux, por ejemplo Ubuntu:
 
-En el caso Linux para levantar el Docker Daemon:
+Usar directamente la Docker Engine
+https://docs.docker.com/engine/install/ubuntu/
+Luego hacer que se pueda manejar Docker como un usuario no root:
+https://docs.docker.com/engine/install/linux-postinstall/
+Para levantar el Docker Daemon:
 sudo service docker start
-Parar pararlo: 
+Para pararlo: 
 sudo service docker stop
 sudo systemctl stop docker.socket
 
